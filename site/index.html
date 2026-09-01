@@ -1,0 +1,293 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lading Line — document extraction for Australian freight forwarders and customs brokers</title>
+<meta name="description" content="Automated extraction and validation of freight and customs documents for Australian forwarders and brokers on Vietnam and South-East Asia lanes. Published pricing. Runs in your own cloud account. We never file with a government.">
+<link rel="canonical" href="https://ladingline.com/">
+<meta property="og:title" content="Lading Line — freight document extraction, priced in public">
+<meta property="og:description" content="Read, validate and route freight and customs documents into the system you already run. Published pricing. Your documents never leave your own cloud account.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://ladingline.com/">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Organization","name":"Lading Line",
+"url":"https://ladingline.com/","description":"Automated document extraction and validation for freight forwarders and licensed customs brokers handling Vietnam and South-East Asia origin cargo.",
+"areaServed":"AU","knowsAbout":["freight document automation","customs document data entry","bill of lading extraction","commercial invoice extraction"]}
+</script>
+<style>
+:root{
+  --ink:#12181f; --ink-2:#4a5765; --ink-3:#77828f;
+  --bg:#fbfaf8; --surface:#ffffff; --line:#e4e1db;
+  --accent:#0b4f6c; --accent-ink:#ffffff; --accent-soft:#eef4f7;
+  --ok:#1d6f42; --warn:#8a5a00;
+  --serif:"Source Serif 4",Georgia,"Times New Roman",serif;
+  --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;
+  --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,monospace;
+  --max:1120px;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --ink:#eef1f4; --ink-2:#b3bcc6; --ink-3:#8b95a1;
+    --bg:#0e1319; --surface:#151c24; --line:#26303a;
+    --accent:#7fc4e0; --accent-ink:#0b1116; --accent-soft:#16232b;
+    --ok:#6fd39a; --warn:#e0b153;
+  }
+}
+:root[data-theme="dark"]{
+  --ink:#eef1f4; --ink-2:#b3bcc6; --ink-3:#8b95a1;
+  --bg:#0e1319; --surface:#151c24; --line:#26303a;
+  --accent:#7fc4e0; --accent-ink:#0b1116; --accent-soft:#16232b;
+  --ok:#6fd39a; --warn:#e0b153;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
+a{color:var(--accent);text-underline-offset:3px}
+h1,h2,h3{font-family:var(--serif);font-weight:600;line-height:1.15;letter-spacing:-0.01em;margin:0}
+h1{font-size:clamp(2.1rem,5vw,3.4rem)}
+h2{font-size:clamp(1.5rem,3vw,2.1rem);margin-bottom:.6em}
+h3{font-size:1.1rem;font-family:var(--sans);font-weight:650;letter-spacing:0}
+p{margin:0 0 1em}
+header.site{border-bottom:1px solid var(--line);position:sticky;top:0;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(8px);z-index:20}
+header.site .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
+.brand{font-family:var(--serif);font-size:1.25rem;font-weight:600;letter-spacing:-0.01em;text-decoration:none;color:var(--ink)}
+.brand span{color:var(--accent)}
+.navlinks{display:flex;gap:26px;align-items:center;font-size:.93rem}
+.navlinks a{color:var(--ink-2);text-decoration:none}
+.navlinks a:hover{color:var(--ink)}
+@media(max-width:720px){.navlinks a:not(.btn){display:none}}
+.btn{display:inline-block;background:var(--accent);color:var(--accent-ink);padding:10px 18px;border-radius:6px;text-decoration:none;font-weight:600;font-size:.93rem;border:0;cursor:pointer;font-family:var(--sans)}
+.btn:hover{filter:brightness(1.08)}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--line)}
+section{padding:76px 0;border-bottom:1px solid var(--line)}
+.hero{padding:84px 0 68px}
+.hero .lede{font-size:1.22rem;color:var(--ink-2);max-width:62ch;margin-top:1.1em}
+.eyebrow{font-size:.78rem;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3);font-weight:650;margin-bottom:1.1em}
+.grid{display:grid;gap:28px}
+.g3{grid-template-columns:repeat(3,1fr)}
+.g2{grid-template-columns:1.05fr .95fr;gap:56px;align-items:start}
+@media(max-width:860px){.g3,.g2{grid-template-columns:1fr}}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:26px}
+.step{display:flex;gap:16px;padding:18px 0;border-bottom:1px solid var(--line)}
+.step:last-child{border-bottom:0}
+.step .n{font-family:var(--mono);font-size:.8rem;color:var(--accent);border:1px solid var(--line);border-radius:50%;width:30px;height:30px;display:grid;place-items:center;flex:0 0 30px;margin-top:2px}
+.step p{margin:.3em 0 0;color:var(--ink-2);font-size:.97rem}
+table{width:100%;border-collapse:collapse;font-size:.95rem}
+th,td{text-align:left;padding:11px 12px;border-bottom:1px solid var(--line)}
+th{font-size:.76rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);font-weight:650}
+td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
+.scroll{overflow-x:auto}
+.calc{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:30px}
+label{display:block;font-size:.83rem;font-weight:650;color:var(--ink-2);margin-bottom:6px}
+input[type=number],input[type=text],input[type=email]{width:100%;padding:11px 13px;border:1px solid var(--line);border-radius:7px;background:var(--bg);color:var(--ink);font:inherit;font-size:1rem}
+input:focus{outline:2px solid var(--accent);outline-offset:1px}
+.field{margin-bottom:18px}
+.readout{border-top:1px solid var(--line);margin-top:22px;padding-top:20px}
+.line{display:flex;justify-content:space-between;gap:16px;padding:7px 0;font-size:.97rem}
+.line .v{font-variant-numeric:tabular-nums;font-weight:600}
+.line.total{border-top:1px solid var(--line);margin-top:10px;padding-top:14px;font-size:1.15rem}
+.line.total .v{color:var(--ok);font-size:1.3rem}
+.hint{font-size:.85rem;color:var(--ink-3);margin-top:14px}
+.pill{display:inline-block;font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;font-weight:650;padding:4px 10px;border-radius:99px;background:var(--accent-soft);color:var(--accent);border:1px solid var(--line)}
+.no-list li{margin-bottom:.5em;color:var(--ink-2)}
+footer{padding:48px 0 64px;font-size:.88rem;color:var(--ink-3)}
+footer a{color:var(--ink-2)}
+.muted{color:var(--ink-3);font-size:.88rem}
+.warnbox{border-left:3px solid var(--accent);padding-left:18px;margin:26px 0}
+</style>
+</head>
+<body>
+
+<header class="site"><div class="wrap">
+  <a class="brand" href="/">Lading<span>&nbsp;Line</span></a>
+  <nav class="navlinks">
+    <a href="#how">How it works</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#data">Your data</a>
+    <a class="btn" href="#test">See it on your documents</a>
+  </nav>
+</div></header>
+
+<section class="hero"><div class="wrap">
+  <div class="eyebrow">For Australian freight forwarders &amp; licensed customs brokers</div>
+  <h1>Your people are still keying<br>bills of lading by hand.</h1>
+  <p class="lede">Lading Line reads your freight and customs documents, checks every value against your own records, and puts clean data into the system you already run. Anything it is not certain about stops and waits for one of your people — because on customs paperwork a confident wrong answer is worse than no answer.</p>
+  <p style="margin-top:28px"><a class="btn" href="#test">See it on 100 of your own documents</a> &nbsp; <a class="btn ghost" href="#pricing">What it costs</a></p>
+  <p class="muted" style="margin-top:20px">Built in Hanoi, at the origin end of your Vietnam and South-East Asia lanes.</p>
+</div></section>
+
+<section id="cost"><div class="wrap">
+  <h2>Work out what it is costing you now</h2>
+  <p style="max-width:62ch;color:var(--ink-2)">We are not going to tell you how long your staff take — you know and we do not. Put your own numbers in.</p>
+  <div class="grid g2" style="margin-top:34px">
+    <div class="calc">
+      <div class="field"><label for="docs">Documents a month</label><input id="docs" type="number" min="0" step="50" value="2200"></div>
+      <div class="field"><label for="mins">Minutes one person spends on one document</label><input id="mins" type="number" min="0" step="0.5" value="6"></div>
+      <div class="field"><label for="wage">Loaded hourly cost of that person (A$)</label><input id="wage" type="number" min="0" step="2.5" value="62.50"><div class="hint">Salary plus superannuation, payroll tax and workers compensation. About A$62.50 for an experienced operations person on A$90,000.</div></div>
+      <div class="readout">
+        <div class="line"><span>What that costs you every month</span><span class="v" id="baseline">—</span></div>
+        <div class="line"><span>Lading Line, at your volume</span><span class="v" id="price">—</span></div>
+        <div class="line"><span>Your own cloud costs</span><span class="v" id="aws">—</span></div>
+        <div class="line"><span>Time still spent checking exceptions</span><span class="v" id="resid">—</span></div>
+        <div class="line total"><span>Left in your pocket, monthly</span><span class="v" id="saving">—</span></div>
+      </div>
+      <p class="hint" id="verdict"></p>
+    </div>
+    <div>
+      <h3>The honest version</h3>
+      <p style="color:var(--ink-2)">Below about four minutes a document, there is not enough here to justify changing anything, and we will tell you so on the first call rather than after a proposal. We would rather disqualify you in four seconds than waste a month of both our time.</p>
+      <div class="warnbox">
+        <p style="margin:0;color:var(--ink-2)">We assume a quarter of your documents will still need a human look, and that a person clears one in about half a minute on a screen built for it. That residual is in the arithmetic on the left. Nobody who hides it is being straight with you.</p>
+      </div>
+      <h3 style="margin-top:26px">What we are actually competing with</h3>
+      <p style="color:var(--ink-2)">Not other software. The person currently doing the keying. That is the only number that matters and it is the one we ask for first.</p>
+    </div>
+  </div>
+</div></section>
+
+<section id="how"><div class="wrap">
+  <h2>How it works</h2>
+  <div class="grid g2">
+    <div>
+      <div class="step"><div class="n">1</div><div><h3>Documents arrive the way they already do</h3><p>Email, file drop or SFTP. Commercial invoices, packing lists, house and master bills of lading, arrival notices, delivery orders.</p></div></div>
+      <div class="step"><div class="n">2</div><div><h3>Every field gets a confidence score</h3><p>Shipper, consignee, container number, weight, value, port, dates. Not a blanket accuracy claim — a number on each field, on each document.</p></div></div>
+      <div class="step"><div class="n">3</div><div><h3>Values are checked against your own records</h3><p>Your party list, your ports, container check digits, HS code format, totals that have to reconcile. A plausible-looking wrong answer gets caught here.</p></div></div>
+      <div class="step"><div class="n">4</div><div><h3>Anything uncertain stops and waits</h3><p>It goes to a review screen built to be worked in seconds — document on one side, fields on the other, keyboard only. Your staff decide. The system never guesses.</p></div></div>
+      <div class="step"><div class="n">5</div><div><h3>Clean data lands in the system you already run</h3><p>Your TMS by API where one exists, otherwise a structured file. Plus export-ready declaration data for your licensed people to review and lodge.</p></div></div>
+    </div>
+    <div class="card">
+      <span class="pill">Where we stop</span>
+      <h3 style="margin-top:16px">We do not file with the government. Ever.</h3>
+      <p style="color:var(--ink-2)">Lodging a declaration is your licensed broker's function and it stays with them, along with the responsibility that comes with it. Lading Line prepares the data and hands it over. We give no customs advice and no tariff classification opinions.</p>
+      <p style="color:var(--ink-2)">Several vendors in this market are moving the other way, toward one-click filing. We think that quietly moves a liability onto software that cannot carry it.</p>
+    </div>
+  </div>
+</div></section>
+
+<section id="pricing"><div class="wrap">
+  <h2>What it costs, in public</h2>
+  <p style="max-width:64ch;color:var(--ink-2)">Of sixteen freight document vendors surveyed, not one publishes a price. We think that tells you something, so here is ours in full.</p>
+  <div class="grid g2" style="margin-top:32px">
+    <div>
+      <div class="card">
+        <div class="line"><span>Platform, monthly — includes 750 documents</span><span class="v">A$4,250</span></div>
+        <div class="line"><span>Documents 751 – 2,500</span><span class="v">A$2.20 each</span></div>
+        <div class="line"><span>Documents 2,501 – 6,000</span><span class="v">A$2.00 each</span></div>
+        <div class="line"><span>Documents above 6,000</span><span class="v">A$1.85 each</span></div>
+        <div class="line"><span>Set-up and implementation, one-off</span><span class="v">A$4,900</span></div>
+      </div>
+      <p class="muted" style="margin-top:16px">Quarterly in advance. Live inside 30 days. Below about 1,000 documents a month we will tell you it is not worth it.</p>
+    </div>
+    <div>
+      <div class="scroll"><table>
+        <thead><tr><th>Documents a month</th><th class="num">You pay</th><th class="num">Per document</th></tr></thead>
+        <tbody>
+          <tr><td>1,000</td><td class="num">A$4,800</td><td class="num">A$4.80</td></tr>
+          <tr><td>1,500</td><td class="num">A$5,900</td><td class="num">A$3.93</td></tr>
+          <tr><td>2,200</td><td class="num">A$7,440</td><td class="num">A$3.38</td></tr>
+          <tr><td>4,000</td><td class="num">A$11,100</td><td class="num">A$2.77</td></tr>
+          <tr><td>6,000</td><td class="num">A$15,100</td><td class="num">A$2.52</td></tr>
+          <tr><td>12,000</td><td class="num">A$26,200</td><td class="num">A$2.18</td></tr>
+        </tbody>
+      </table></div>
+      <p class="muted" style="margin-top:14px">One rule about spikes, and that is the whole policy: a month more than 40% above your own three-month average is billed at the average. No tiers to negotiate, no annual reconciliation, no surprise re-pricing.</p>
+    </div>
+  </div>
+</div></section>
+
+<section id="data"><div class="wrap">
+  <h2>Your documents never come to us</h2>
+  <div class="grid g2">
+    <div>
+      <p style="color:var(--ink-2)">Flow runs inside an AWS account in Sydney that <strong>you</strong> own, pay for and control. You hold the root credentials, the encryption key and the billing. We publish the software; you run it.</p>
+      <p style="color:var(--ink-2)">We hold no credentials in your account at any point — not during set-up, not for support, not in an emergency. There is no key for us to lose and no back door for anyone to find.</p>
+      <p style="color:var(--ink-2)">What comes back to us is a count of documents processed for your invoice, and accuracy percentages for your monthly report. No shippers, no consignees, no values, no documents.</p>
+    </div>
+    <div class="card">
+      <span class="pill">In practice</span>
+      <ul class="no-list" style="margin-top:16px;padding-left:18px">
+        <li>You create the AWS account on a call with us. About fifteen minutes.</li>
+        <li>You click one link. The system builds itself in about half an hour.</li>
+        <li>You log in and add your own integration credentials. We never see them.</li>
+        <li>Updates arrive as a change you approve. Nothing installs itself.</li>
+        <li>If you walk away, you delete it yourself and it is gone.</li>
+      </ul>
+      <p class="muted" style="margin-top:8px">Your cloud cost runs about A$220 a month at 2,200 documents, paid to Amazon, not to us. It is in the calculator above.</p>
+    </div>
+  </div>
+</div></section>
+
+<section id="test"><div class="wrap">
+  <h2>See it on 100 of your own documents</h2>
+  <p style="max-width:64ch;color:var(--ink-2)">Free, about a fortnight, and it runs inside your own environment so nothing leaves your business. You get the field-by-field accuracy on your real paperwork, your actual exception rate, and what it would save you. Whatever you decide afterwards, the findings are yours.</p>
+  <div class="grid g2" style="margin-top:30px">
+    <form class="calc" id="lead" method="POST" action="REPLACE_WITH_FORM_ENDPOINT">
+      <div class="field"><label for="f-name">Your name</label><input id="f-name" name="name" type="text" required></div>
+      <div class="field"><label for="f-company">Company</label><input id="f-company" name="company" type="text" required></div>
+      <div class="field"><label for="f-email">Work email</label><input id="f-email" name="email" type="email" required></div>
+      <div class="field"><label for="f-docs">Documents a month, roughly</label><input id="f-docs" name="documents_per_month" type="number" min="0" step="50" required></div>
+      <div class="field"><label for="f-mins">Minutes per document, roughly</label><input id="f-mins" name="minutes_per_document" type="number" min="0" step="0.5" required></div>
+      <div class="field"><label for="f-tms">What system do you run today?</label><input id="f-tms" name="tms" type="text" placeholder="CargoWise, Magaya, spreadsheets…"></div>
+      <button class="btn" type="submit" style="width:100%">Request the accuracy test</button>
+      <p class="hint">We will reply within one business day. If your numbers say this is not worth doing, we will say so.</p>
+    </form>
+    <div>
+      <h3>What happens next</h3>
+      <div class="step"><div class="n">1</div><div><p>A short call. We ask about your document mix and your volumes, and show you extraction running live on sample documents. No commitment, nothing to install.</p></div></div>
+      <div class="step"><div class="n">2</div><div><p>If it looks worth testing, you set up an AWS account and click one link. We are on the call while you do it.</p></div></div>
+      <div class="step"><div class="n">3</div><div><p>You put 100 of your own documents in. Your operations people check the results on a screen we built for it.</p></div></div>
+      <div class="step"><div class="n">4</div><div><p>You get a written findings report — accuracy by document type, exception rate, time saved. Then you decide, or you delete the whole thing in one click.</p></div></div>
+    </div>
+  </div>
+</div></section>
+
+<footer><div class="wrap">
+  <p><strong style="color:var(--ink)">Lading Line</strong> — document extraction and validation for freight forwarders and licensed customs brokers.</p>
+  <p>Hanoi, Vietnam · <a href="mailto:REPLACE@ladingline.com">REPLACE@ladingline.com</a> · <a href="tel:REPLACE">REPLACE</a></p>
+  <p class="muted">Lading Line prepares data. It does not lodge or submit filings with any government authority, and it does not provide customs or trade-compliance advice. Figures on this page are list prices and modelled examples, not a guarantee of any particular result in your business.</p>
+  <p class="muted"><a href="/privacy">Privacy</a> · <a href="/terms">Terms</a> · <span id="year"></span></p>
+</div></footer>
+
+<script>
+(function(){
+  var $=function(id){return document.getElementById(id)};
+  var fmt=function(n){return 'A$'+Math.round(n).toLocaleString('en-AU')};
+  function price(d){
+    if(d<=0) return 0;
+    var p=4250, billable=Math.max(0,d-750);
+    p += Math.min(billable,1750)*2.20;
+    if(d>2500) p += Math.min(d-2500,3500)*2.00;
+    if(d>6000) p += (d-6000)*1.85;
+    return p;
+  }
+  function awsCost(d){ return Math.max(175, 175+(d-1200)*0.019); }
+  function calc(){
+    var d=+$('docs').value||0, m=+$('mins').value||0, w=+$('wage').value||0;
+    var baseline=d*(m/60)*w;
+    var p=price(d), a=awsCost(d), resid=d*0.25*(30/3600)*w;
+    var saving=baseline-(p+a+resid);
+    $('baseline').textContent=fmt(baseline);
+    $('price').textContent=fmt(p);
+    $('aws').textContent=fmt(a);
+    $('resid').textContent=fmt(resid);
+    $('saving').textContent=(saving>=0?'':'−')+fmt(Math.abs(saving));
+    $('saving').style.color = saving>0 ? 'var(--ok)' : 'var(--warn)';
+    var v=$('verdict');
+    if(d<1000){ v.textContent='Under 1,000 documents a month, the platform fee dominates. We would tell you not to bother.'; }
+    else if(saving<=0){ v.textContent='On these numbers there is nothing here for you. That is a real answer and we would give it to you on the first call.'; }
+    else { v.textContent='Set-up is A$4,900 one-off, which on these numbers pays for itself in about '+(4900/saving).toFixed(1)+' months.'; }
+  }
+  ['docs','mins','wage'].forEach(function(id){ $(id).addEventListener('input',calc); });
+  calc();
+  $('year').textContent='© '+new Date().getFullYear()+' Lading Line';
+  // Carry the calculator numbers into the request form.
+  var f=$('lead');
+  f.addEventListener('focusin',function(){
+    if(!$('f-docs').value) $('f-docs').value=$('docs').value;
+    if(!$('f-mins').value) $('f-mins').value=$('mins').value;
+  });
+})();
+</script>
+</body>
+</html>

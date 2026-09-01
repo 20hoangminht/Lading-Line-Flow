@@ -1,0 +1,20 @@
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.env
+*.sqlite3
+/staticfiles/
+/media/
+.DS_Store
+.idea/
+.vscode/
+*.log
+node_modules/
+.coverage
+htmlcov/
+# Never commit customer material
+/customer-documents/
+/samples/real/
+*.pdf
+!docs/**/*.pdf
