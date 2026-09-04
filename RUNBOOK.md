@@ -18,6 +18,23 @@ not that it never fails.*
 **Escalate if.** The red text says anything else. Copy the last twenty lines and paste them into the
 session.
 
+## The application reports unapplied migrations
+
+**Symptom.** The start output includes `unapplied migration(s)`, or creating the local login reports
+that a database table does not exist.
+
+**Check.** In PowerShell, from the `Lading-Line-Flow` folder, run:
+
+```powershell
+docker compose run --rm web python manage.py migrate
+```
+
+**Fix.** Wait for the command to finish, then run `docker compose up --build` again. The normal web
+start applies migrations automatically; the command above safely repairs an interrupted first run.
+
+**Escalate if.** Any migration line ends in `FAILED`. Copy the last twenty lines and paste them into
+the session. Do not delete the database.
+
 ## A document is stuck and never appears in the review queue
 
 *To be written in Phase 2.*

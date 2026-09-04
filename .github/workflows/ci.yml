@@ -19,6 +19,8 @@ jobs:
           --health-timeout 5s --health-retries 5
     steps:
       - uses: actions/checkout@v4
+      - name: Build the container image
+        run: docker build ./app
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
@@ -26,6 +28,11 @@ jobs:
         working-directory: app
       - name: Lint
         run: ruff check . && ruff format --check .
+      - name: Check that model changes have migrations
+        run: python manage.py makemigrations --check --dry-run
+        working-directory: app
+        env:
+          DATABASE_URL: postgresql://flow:flow@localhost:5432/flow
       - name: Guardrail tests
         run: pytest tests/ -v
       - name: Application tests
