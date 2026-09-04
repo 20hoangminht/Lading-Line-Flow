@@ -84,8 +84,8 @@ Run in the second PowerShell window:
 docker compose ps
 ```
 
-Success means the first command prints `{"status": "ok"}`. The second command must list `db` and
-`web`; neither may say `Exit` or `Restarting`.
+Success means the first command prints `{"status": "ok"}`. The second command must list `db`, `web`,
+and `worker`; none may say `Exit` or `Restarting`.
 
 Open <http://localhost:8000> in a browser. Success means the Flow page opens without a browser error.
 

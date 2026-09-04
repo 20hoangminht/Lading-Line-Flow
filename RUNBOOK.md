@@ -35,6 +35,21 @@ start applies migrations automatically; the command above safely repairs an inte
 **Escalate if.** Any migration line ends in `FAILED`. Copy the last twenty lines and paste them into
 the session. Do not delete the database.
 
+## The worker stops
+
+**Symptom.** `docker compose ps` lists `worker` as `Exit` or `Restarting`.
+
+**Check.** In PowerShell, from the `Lading-Line-Flow` folder, run:
+
+```powershell
+docker compose logs --tail 20 worker
+```
+
+**Fix.** Run `docker compose down`, wait for it to finish, then run `docker compose up --build`.
+
+**Escalate if.** `docker compose ps` still does not list the worker as running. Copy the 20 worker
+log lines and paste them into the session.
+
 ## A document is stuck and never appears in the review queue
 
 *To be written in Phase 2.*

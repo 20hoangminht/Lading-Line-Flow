@@ -7,7 +7,9 @@ adding a convenience.
 
 from pathlib import Path
 
-TEMPLATES = list((Path(__file__).resolve().parent.parent / "infra" / "cloudformation").glob("*.yaml"))
+TEMPLATES = list(
+    (Path(__file__).resolve().parent.parent / "infra" / "cloudformation").glob("*.yaml")
+)
 
 FORBIDDEN = [
     "sts:AssumeRole",
