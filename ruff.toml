@@ -1,0 +1,7 @@
+# Lint settings for everything outside app/, which has its own in app/pyproject.toml.
+#
+# Without this file, ruff falls back to its default line width of 88 for tests/, evals/ and
+# infra/, while app/ is checked at 100. The same code then passes in one directory and fails in
+# another. Same numbers as app/pyproject.toml, so there is one answer.
+line-length = 100
+target-version = "py312"

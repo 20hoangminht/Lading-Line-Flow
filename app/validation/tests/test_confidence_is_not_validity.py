@@ -31,7 +31,7 @@ def test_a_field_read_with_high_confidence_can_still_fail_validation(make_field)
         extracted_field=field,
         rule_code="container_check_digit",
         outcome=ValidationResult.Outcome.FAIL,
-        detail="Check digit is 3; the number MSCU123456 computes to 7.",
+        detail="Check digit is 3; the number MSCU123456 computes to 6.",
     )
 
     field.refresh_from_db()
@@ -153,7 +153,7 @@ def test_a_warning_is_surfaced_without_blocking(make_field):
 
 
 def test_one_field_carries_the_results_of_several_rules(make_field):
-    field = make_field(field_key="container_number", value="MSCU1234567", confidence=0.96)
+    field = make_field(field_key="container_number", value="MSCU1234566", confidence=0.96)
     for code, outcome in [
         ("container_check_digit", ValidationResult.Outcome.PASS),
         ("container_prefix_known", ValidationResult.Outcome.PASS),

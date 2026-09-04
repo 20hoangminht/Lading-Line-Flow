@@ -82,9 +82,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 # --- Flow settings -------------------------------------------------------------------------
 
 AWS_REGION = os.environ.get("AWS_REGION", "ap-southeast-2")
-BEDROCK_MODEL_ID = os.environ.get(
-    "BEDROCK_MODEL_ID", "au.anthropic.claude-haiku-4-5-20251001-v1:0"
-)
+BEDROCK_MODEL_ID = os.environ.get("BEDROCK_MODEL_ID", "au.anthropic.claude-haiku-4-5-20251001-v1:0")
 BEDROCK_ENABLED = os.environ.get("BEDROCK_ENABLED", "false").lower() == "true"
 
 REVIEW_CONFIDENCE_THRESHOLD = float(os.environ.get("REVIEW_CONFIDENCE_THRESHOLD", "0.85"))

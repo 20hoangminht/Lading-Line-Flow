@@ -56,7 +56,7 @@ def extraction_run(logical_document):
 def make_field(extraction_run):
     """Build an extracted field. Routing is left to the model unless a test forces it."""
 
-    def _make(field_key="container_number", value="MSCU1234567", confidence=0.99, **kwargs):
+    def _make(field_key="container_number", value="MSCU1234566", confidence=0.99, **kwargs):
         kwargs.setdefault("threshold_applied", 0.85)
         kwargs.setdefault("page_index", 0)
         return ExtractedField.objects.create(
