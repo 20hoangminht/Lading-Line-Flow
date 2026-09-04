@@ -24,6 +24,10 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    # The job queue (D-004). Registering it here is what gives us the `manage.py procrastinate`
+    # command and its database tables; without it the worker exits with "Unknown command".
+    # Procrastinate runs on PostgreSQL, which we already have, so there is no Redis and no Celery.
+    "procrastinate.contrib.django",
     "documents",
     "review",
     "validation",
