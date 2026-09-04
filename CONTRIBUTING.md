@@ -30,3 +30,7 @@ Say what changed and why in plain English. Reference the ADR if there is one.
 
 Take separate branches. If both are working, the second to start rebases. Never edit the same file in
 two live branches without saying so in both pull requests.
+
+An agent may make the minimum change outside its assigned lane when that change is required to make
+CI green on its own branch. The pull request must name the out-of-lane file, explain why the change
+was necessary, and call it out for the owner's review.

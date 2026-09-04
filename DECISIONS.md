@@ -258,3 +258,18 @@ chosen before a single real document has been classified. The Accuracy Test will
 **Cost.** None to run. A higher threshold sends more documents to a person, which spends reviewer
 seconds rather than money — and spends them on the error that would otherwise cost the most to
 unpick. **Reversal cost: Trivial** for the number, which is a config row. **Low** for the button row.
+
+---
+
+## F-010 — CI builds the runnable container image
+
+**Decided.** Every pull request must build `app/Dockerfile` in CI, in addition to installing the
+Python dependencies and running the test suite. The container is the artefact the owner runs, so a
+change cannot pass CI when that artefact cannot be built.
+
+**Rejected — dependency installation alone.** It did not reproduce Docker's file-copy order. CI
+therefore stayed green while the editable install in the image failed because the six declared
+Python package directories had not yet been copied into the image.
+
+**Cost.** No additional monthly product cost. CI takes a few more minutes per change within the
+repository's existing GitHub Actions allowance. **Reversal cost: Trivial.**
