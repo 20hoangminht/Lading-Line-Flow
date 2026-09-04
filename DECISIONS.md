@@ -66,3 +66,65 @@ is neither providing nor operating a personal-data processing system. See
 `docs/decree-356-boundaries.md`.
 
 **Cost.** Negligible. **Reversal cost: Medium** — it is the invoice.
+
+---
+
+## F-004 — One source file, many logical documents
+
+**Decided.** A file that arrives and a business document inside it are two different tables.
+`SourceFile` is the PDF that turned up; `LogicalDocument` is the invoice, the bill of lading or the
+arrival notice found inside it, holding a list of the page indexes it occupies. One file routinely
+produces several documents.
+
+**Rejected — document type and page range as columns on the file.** Simpler, and wrong. A customer
+emailing one ten-page PDF containing an invoice, a house bill of lading and an arrival notice is the
+ordinary case in freight, not an edge case. A one-file-one-document model would have to be unpicked
+the first week of real documents, after live data existed.
+
+**Also decided.** House and master bills of lading are separate document types rather than one type
+with a flag. They name different parties and drive different work. Owner's call, 4 September 2026.
+
+**Cost.** None. **Reversal cost: High** — client-visible and a data migration once documents exist.
+
+---
+
+## F-005 — Model confidence and validation are separate judgements, and the database enforces it
+
+**Decided.** Two different questions get two different tables. `ExtractedField.confidence` is the
+model's opinion that it read the characters correctly. `ValidationResult` is whether the value is
+right: check digits, known parties, totals that reconcile, dates that exist. `ExtractedField.routing`
+is held to the confidence rule alone by a database check constraint, so routing cannot be quietly
+repurposed to mean "a validation rule failed". `ValidationResult` has no confidence column and no
+reference to one.
+
+**Rejected — one quality score, or a single valid/invalid flag on the field.** It reads as an
+economy and is the most damaging shortcut available in the product. The errors that cost a customer
+money are the confidently wrong ones: a clean scan of the wrong container number sails through at
+0.99. A system that only reviews low-confidence fields waves those through, and the customer finds
+out before Flow does.
+
+**Consequence.** A field reaches a human if the model was unsure **or** a rule failed. The two are
+stored apart and read together at the moment of asking.
+
+**Cost.** None. **Reversal cost: High** — it is the accuracy claim the product is sold on.
+
+---
+
+## F-006 — SHA-256 of the file is the idempotency key
+
+**Decided.** `SourceFile.sha256` is unique in the database. The same bytes arriving a second time
+resolve to the existing row and start no new work: no new pages, no new logical documents, no new
+extraction run, no new meter event. Everything that takes a file in goes through
+`documents.ingest.ingest_source_file`.
+
+**Rejected — filename and byte size.** The same document arrives under different names constantly:
+a forwarder forwards an email, a broker re-uploads, an SFTP poller re-reads a directory after a
+restart. Names are not identity.
+
+**Rejected — a deduplication pass after ingestion.** By then the model has already been called and
+the document has already been counted, which is the thing being prevented.
+
+**Why it matters.** Revenue is a per-document count (F-003). A duplicate charge is the kind of
+billing error a customer finds first, and it costs more in trust than in money.
+
+**Cost.** None. **Reversal cost: Low.**
