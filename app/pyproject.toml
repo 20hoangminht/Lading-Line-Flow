@@ -24,6 +24,18 @@ packages = ["config", "documents", "review", "validation", "metering", "integrat
 line-length = 100
 target-version = "py312"
 
+[tool.ruff.lint]
+ignore = [
+  # RUF012 wants every class attribute that is a list to be annotated as a ClassVar. Django's
+  # Meta.constraints, Meta.indexes and a migration's operations list are all plain lists by
+  # design, so this rule fires on ordinary, correct Django code and on files Django generates.
+  "RUF012",
+]
+
+[tool.ruff.lint.per-file-ignores]
+# Migrations are written by Django, not by us. Lint what we typed.
+"*/migrations/*.py" = ["E501", "I001"]
+
 [tool.pytest.ini_options]
 DJANGO_SETTINGS_MODULE = "config.settings"
 python_files = "test_*.py"

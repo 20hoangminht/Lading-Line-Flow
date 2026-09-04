@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 """Django's command-line utility."""
+
 import os
 import sys
 

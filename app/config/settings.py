@@ -24,6 +24,10 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    # The job queue (D-004). Registering it here is what gives us the `manage.py procrastinate`
+    # command and its database tables; without it the worker exits with "Unknown command".
+    # Procrastinate runs on PostgreSQL, which we already have, so there is no Redis and no Celery.
+    "procrastinate.contrib.django",
     "documents",
     "review",
     "validation",
@@ -82,12 +86,16 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 # --- Flow settings -------------------------------------------------------------------------
 
 AWS_REGION = os.environ.get("AWS_REGION", "ap-southeast-2")
-BEDROCK_MODEL_ID = os.environ.get(
-    "BEDROCK_MODEL_ID", "au.anthropic.claude-haiku-4-5-20251001-v1:0"
-)
+BEDROCK_MODEL_ID = os.environ.get("BEDROCK_MODEL_ID", "au.anthropic.claude-haiku-4-5-20251001-v1:0")
 BEDROCK_ENABLED = os.environ.get("BEDROCK_ENABLED", "false").lower() == "true"
 
 REVIEW_CONFIDENCE_THRESHOLD = float(os.environ.get("REVIEW_CONFIDENCE_THRESHOLD", "0.85"))
+
+# Classification is judged at a higher bar than individual fields, and deliberately so (F-009): a
+# doubtful field is one field a person checks, while a doubtful document type is every field wrong
+# at once, because the type chooses the schema. Below this, the document goes to a person before
+# extraction runs at all.
+CLASSIFY_CONFIDENCE_THRESHOLD = float(os.environ.get("CLASSIFY_CONFIDENCE_THRESHOLD", "0.90"))
 
 # The usage meter. Blank locally: the meter still records every document in the database, it
 # simply sends nothing. See docs/decree-356-boundaries.md for what it may ever contain.
